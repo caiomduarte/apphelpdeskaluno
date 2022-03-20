@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296203433430",
+    "project_id": "helpdeskoficial-3dfab",
+    "storage_bucket": "helpdeskoficial-3dfab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296203433430:android:ce799bcb4a514b10e02077",
+        "android_client_info": {
+          "package_name": "com.example.apphelpdeskaluno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296203433430-kkteuovdkhuomcsot2a8c34g9r83va8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiE4OtnZGK0TfN08VmrnzWIbmsxA5e5A0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296203433430-kkteuovdkhuomcsot2a8c34g9r83va8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
