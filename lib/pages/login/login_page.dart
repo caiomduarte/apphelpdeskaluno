@@ -1,4 +1,5 @@
 import 'package:apphelpdeskaluno/util/AppColors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -9,6 +10,33 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController senhaController = new TextEditingController();
+
+  void efetuaLogin() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    auth
+        .signInWithEmailAndPassword(
+            email: emailController.text, password: senhaController.text)
+        .then((firebaseUser) {
+      final SnackBar snackBar = SnackBar(
+          content: Text('Login efetuado com Sucesso!'),
+          duration: Duration(seconds: 5));
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      Navigator.pushNamed(context, 'home');
+    }).catchError((erro) {
+      print('Aconteceu o erro: ' + erro.toString());
+
+      final SnackBar snackBar = SnackBar(
+          content: Text('E-mail ou senha incorreta!'),
+          duration: Duration(seconds: 5));
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 color: AppColors.primaryOpacityColor,
                 child: TextField(
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       hintText: 'E-mail',
@@ -70,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 color: AppColors.primaryOpacityColor,
                 child: TextField(
+                  controller: senhaController,
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: 'Senha',
@@ -97,6 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: () {
                         print("Clicou em criar uma conta");
+                        Navigator.pushNamed(context, 'register');
                       },
                       child: Text('Criar uma conta',
                           style: GoogleFonts.poppins(
@@ -139,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Acessar',
                       style: TextStyle(fontSize: 20),
                     ),
-                    onPressed: () {}),
+                    onPressed: efetuaLogin),
               ),
               SizedBox(
                 height: 10,
