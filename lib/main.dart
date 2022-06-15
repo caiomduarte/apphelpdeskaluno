@@ -1,6 +1,7 @@
 //import 'package:apphelpdeskaluno/pages/home/home_page.dart';
 import 'package:apphelpdeskaluno/pages/home/home_page.dart';
 import 'package:apphelpdeskaluno/pages/login/login_page.dart';
+import 'package:apphelpdeskaluno/pages/orders/order_page.dart';
 import 'package:apphelpdeskaluno/pages/register/register_page.dart';
 //import 'package:apphelpdeskaluno/pages/register/register_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,11 +19,12 @@ void main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'login',
+    initialRoute: 'order',
     routes: {
       'home': (BuildContext context) => HomePage(),
       'login': (BuildContext context) => LoginPage(),
       'register': (BuildContext contex) => RegisterPage(),
+      'order': (BuildContext contex) => OrderPage(),
     },
   ));
 }
