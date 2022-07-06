@@ -50,7 +50,12 @@ class _OrderPageState extends State<OrderPage> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AppColors.primaryColor),
-                child: Icon(Icons.phone_callback_rounded, color: Colors.white),
+                child: InkWell(
+                    onTap: () {
+                      exibirModal(context);
+                    },
+                    child: Icon(Icons.phone_callback_rounded,
+                        color: Colors.white)),
               ),
             ),
           ),
@@ -146,5 +151,68 @@ class _OrderPageState extends State<OrderPage> {
         ),
       ),
     );
+  }
+
+  void exibirModal(context) {
+    showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (context) => Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25))),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    Text(
+                      "Novo chamado",
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.textColorBlue)),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Titulo do chamado',
+                          hintStyle: TextStyle(color: AppColors.textColorBlue),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextField(
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                          hintText: 'Descrição',
+                          hintStyle: TextStyle(color: AppColors.textColorBlue),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 15),
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Salvar chamado',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: AppColors.primaryColor),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ));
   }
 }
